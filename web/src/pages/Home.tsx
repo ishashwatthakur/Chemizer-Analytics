@@ -139,8 +139,6 @@ const Home = () => {
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center gap-8">
             <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About</a>
-            <a href="/dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Dashboard</a>
-            <a href="/profile" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Profile</a>
           </div>
           <a 
             href="https://github.com/ishashwatthakur/Chemizer-Analytics" 
