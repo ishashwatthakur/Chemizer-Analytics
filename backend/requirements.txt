@@ -14,3 +14,7 @@ requests==2.31.0
 pandas
 openpyxl
 reportlab
+gunicorn
+psycopg2-binary
+dj-database-url
+whitenoise

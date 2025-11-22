@@ -4,6 +4,7 @@ Django settings for chemizer project.
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import dj_database_url
 
 # Load environment variables
 load_dotenv()
@@ -52,6 +53,7 @@ AUTHENTICATION_BACKENDS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,13 +84,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'chemizer.wsgi.application'
 
-# Database
+# RENDER DATABASE CONFIGURATION
 DATABASES = {
-    'default': {
+    'default': dj_database_url.config(
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
+}
+# Fallback to SQLite for local use if DATABASE_URL is not set (e.g., when running locally)
+if 'DATABASE_URL' not in os.environ:
+    DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -112,8 +120,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# Static files
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files (uploads)
 MEDIA_URL = '/media/'
