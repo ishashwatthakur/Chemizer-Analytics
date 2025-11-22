@@ -44,6 +44,8 @@ try:
     HAS_MATPLOTLIB = True
 except:
     HAS_MATPLOTLIB = False
+    plt = None  # type: ignore
+    np = None  # type: ignore
 
 
 def send_otp_email(email, otp):

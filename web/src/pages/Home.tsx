@@ -12,6 +12,14 @@ const Home = () => {
     window.location.href = '/';
   };
 
+  const handleGetStarted = () => {
+    if (isAuthenticated) {
+      navigate("/main"); // Go to upload page if logged in
+    } else {
+      navigate("/auth/signup"); // Go to signup if not logged in
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -55,7 +63,7 @@ const Home = () => {
                   Sign In
                 </Button>
                 <Button 
-                  onClick={() => navigate("/auth/signup")}
+                  onClick={handleGetStarted}
                   className="rounded-md bg-primary text-primary-foreground hover:bg-primary/90"
                 >
                   Get Started
@@ -80,7 +88,7 @@ const Home = () => {
           </p>
           <Button 
             size="lg"
-            onClick={() => navigate("/auth/signup")}
+            onClick={handleGetStarted}
             className="rounded-md bg-primary text-primary-foreground hover:bg-primary/90"
           >
             Start Analyzing <ArrowRight className="ml-2 h-5 w-5" />
@@ -135,7 +143,7 @@ const Home = () => {
             <a href="/profile" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Profile</a>
           </div>
           <a 
-            href="https://github.com" 
+            href="https://github.com/ishashwatthakur/Chemizer-Analytics" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-foreground transition-colors"

@@ -1,0 +1,13 @@
+{
+  "typeCheckingMode": "basic",
+  "ignore": ["**/.venv", "**/venv"],
+  "reportAttributeAccessIssue": "none",
+  "reportOptionalMemberAccess": "none",
+  "reportOptionalSubscript": "none",
+  "reportIndexIssue": "none",
+  "reportIncompatibleMethodOverride": "none",
+  "reportPrivateImportUsage": "none",
+  "reportMissingImports": "none",
+  "reportPossiblyUnboundVariable": "none",
+  "reportOperatorIssue": "none"
+}

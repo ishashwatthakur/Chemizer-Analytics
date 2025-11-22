@@ -16,7 +16,7 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_OAUTH_CLIENT_ID || "";
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
 
 const App = () => (
   <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>

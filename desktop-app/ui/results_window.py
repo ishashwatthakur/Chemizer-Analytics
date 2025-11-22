@@ -20,15 +20,22 @@ try:
     from matplotlib.figure import Figure
     import matplotlib.pyplot as plt
     import numpy as np
+    import scipy.stats
     MATPLOTLIB_AVAILABLE = True
 except ImportError:
     MATPLOTLIB_AVAILABLE = False
+    FigureCanvas = None  # type: ignore
+    Figure = None  # type: ignore
+    plt = None  # type: ignore
+    np = None  # type: ignore
     print("Warning: matplotlib not installed. Charts will not be available.")
 
 
 class InteractiveChartWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
+        if not MATPLOTLIB_AVAILABLE or Figure is None or FigureCanvas is None:
+            raise RuntimeError("Matplotlib not available")
         self.figure = Figure(figsize=(12, 5), facecolor='white')
         self.canvas = FigureCanvas(self.figure)
         self.setMinimumHeight(400)
@@ -423,7 +430,7 @@ class ResultsWindow(QMainWindow):
             ("Total Rows", str(rows)),
             ("Total Columns", str(columns)),
             ("Numeric Columns", str(len(numeric_cols))),
-            ("File Size", f"{self.analysis_data.get('file_size', 0) / 1024:.1f} KB")
+            ("File Size", f"{int(self.analysis_data.get('file_size', 0)) / 1024:.1f} KB")
         ]
 
         for i, (label, value) in enumerate(stats):
@@ -462,7 +469,7 @@ class ResultsWindow(QMainWindow):
         insights = [
             f"Dataset contains {len(self.analysis_data.get('data_preview', []))} records available for detailed analysis",
             f"{len(numeric_cols)} numeric columns identified for statistical analysis",
-            f"File size: {self.analysis_data.get('file_size', 0) / 1024:.2f} KB"
+            f"File size: {int(self.analysis_data.get('file_size', 0)) / 1024:.2f} KB"
         ]
 
         for insight in insights:

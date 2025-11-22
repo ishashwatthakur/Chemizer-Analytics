@@ -687,8 +687,9 @@ class HistoryWindow(QMainWindow):
     
     def view_upload(self, upload):
         """View upload details/results"""
+        upload_id = upload.get("upload_id")
         from ui.results_window import ResultsWindow
-        self.results_window = ResultsWindow(upload)
+        self.results_window = ResultsWindow(upload_id)
         self.results_window.show()
         self.close()
     
