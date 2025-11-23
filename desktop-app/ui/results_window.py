@@ -22,13 +22,13 @@ try:
     import numpy as np
     import scipy.stats
     MATPLOTLIB_AVAILABLE = True
-except ImportError:
+except Exception as e:
     MATPLOTLIB_AVAILABLE = False
     FigureCanvas = None  # type: ignore
     Figure = None  # type: ignore
     plt = None  # type: ignore
     np = None  # type: ignore
-    print("Warning: matplotlib not installed. Charts will not be available.")
+    print(f"Warning: matplotlib not available. Charts will not be available. Error: {e}")
 
 
 class InteractiveChartWidget(QWidget):
