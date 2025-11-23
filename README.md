@@ -6,7 +6,7 @@ A comprehensive web and desktop application for analyzing chemical equipment dat
 
 ---
 
-**Heads Up! We're connecting to our live server (Render/Replit). Please allow an extra few seconds for the results to load.**
+**Heads Up! We're connecting to our live server (Render). Please allow an extra few seconds for the results to load.**
 
 ---
 ## 📋 TABLE OF CONTENTS
